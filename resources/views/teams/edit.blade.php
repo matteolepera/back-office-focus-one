@@ -2,9 +2,9 @@
 
 @section('content')
     <h1>Modifica il team</h1>
-    <form class="p-3" action="{{ route('teams.store') }}" method="POST" enctype="multipart/form-data">
+    <form class="p-3" action="{{ route('teams.update', $team) }}" method="POST" enctype="multipart/form-data">
         @csrf
-
+        @method('PUT')
         <div class="row">
 
             <div class="col-md-4 mb-3">
