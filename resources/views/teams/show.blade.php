@@ -3,7 +3,8 @@
 @section('content')
 
     <h1 class="mb-4">{{ $team->name }}
-        <img src="{{ $team->logo_image }}" alt="logo {{ $team->full_name }}">
+        <img src="{{ asset("storage/" . $team->logo_image) }}" alt="logo {{ $team->full_name }}">
+
     </h1>
 
     <div class="mb-5">
