@@ -4,8 +4,10 @@
 
     <h1 class="mb-4">{{ $team->name }}
         <img src="{{ asset("storage/" . $team->logo_image) }}" alt="logo {{ $team->full_name }}">
-
     </h1>
+    <div>
+        <a class="btn btn-warning" href={{ route("teams.edit", $team) }}>Modifica</a>
+    </div>
 
     <div class="mb-5">
         <p><strong>Nome completo:</strong> {{ $team->full_name }}</p>
