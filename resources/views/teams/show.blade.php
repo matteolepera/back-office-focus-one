@@ -6,7 +6,10 @@
         <img src="{{ asset("storage/" . $team->logo_image) }}" alt="logo {{ $team->full_name }}">
     </h1>
     <div>
-        <a class="btn btn-warning" href={{ route("teams.edit", $team) }}>Modifica</a>
+        <a class="btn btn-warning" href={{ route("teams.edit", $team) }}>Modifica team</a>
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDestroyProject">
+            Elimina team
+        </button>
     </div>
 
     <div class="mb-5">
@@ -51,4 +54,30 @@
         <p>Nessuna auto disponibile</p>
     @endif
 
+
+    <a class="btn btn-primary" href={{ route("teams.index") }}>Torna indietro</a>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalDestroyProject" tabindex="-1" aria-labelledby="modalDestroyProjectLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalDestroyProjectLabel">Conferma eliminazione team</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Sei sicuro di voler eliminare il team?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                    <form action={{ route("teams.destroy", $team) }} method="POST">
+                        @csrf
+                        @method("DELETE")
+                        <input class="btn btn-danger" type="submit" value="Conferma eliminazione">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
