@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\DriverController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Route::get('/dashboard', function () {
@@ -20,5 +21,9 @@ Route::middleware('auth')->group(function () {
 
 Route::resource("teams", TeamController::class);
 // ->middleware(['auth', 'verified']);
+
+Route::resource("drivers", DriverController::class);
+// ->middleware(['auth', 'verified']);
+
 
 require __DIR__ . '/auth.php';
