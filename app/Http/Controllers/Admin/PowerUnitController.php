@@ -57,8 +57,7 @@ class PowerUnitController extends Controller
      */
     public function edit(PowerUnit $powerUnit)
     {
-        // $teams = Team::all();
-        // return view("drivers.edit", compact("driver", "teams"));
+        return view("power-units.edit", compact("powerUnit"));
     }
 
     /**
@@ -66,33 +65,14 @@ class PowerUnitController extends Controller
      */
     public function update(Request $request, PowerUnit $powerUnit)
     {
-        // $data = $request->all();
-        // // dd($data);
+        $data = $request->all();
+        $powerUnit->name = $data["name"];
+        $powerUnit->manufacturer = $data["manufacturer"];
+        $powerUnit->season = $data["season"];
 
-        // $driver->first_name = $data["first_name"];
-        // $driver->last_name = $data["last_name"];
-        // $driver->nationality = $data["nationality"];
-        // $driver->season = $data["season"];
-        // $driver->driver_number = $data["driver_number"];
-        // $driver->date_of_birth = $data["date_of_birth"];
-        // $driver->team_id = $data["team_id"];
-        // $driver->driver_slogan = $data["driver_slogan"];
-        // $driver->biography = $data["biography"];
-        // $driver->total_pole_positions = $data["total_pole_positions"];
-        // $driver->total_podiums = $data["total_podiums"];
-        // $driver->total_wins = $data["total_wins"];
-        // $driver->total_world_championships = $data["total_world_championships"];
+        $powerUnit->update();
 
-        // if (array_key_exists("photo", $data)) {
-        //     Storage::delete($driver->photo);
-
-        //     $img_url = Storage::putFile("drivers_logo", $data["photo"]);
-        //     $driver->photo = $img_url;
-        // }
-
-        // $driver->update();
-
-        // return redirect()->route("drivers.show", $driver);
+        return redirect()->route("power-units.show", $powerUnit);
     }
 
     /**
@@ -100,12 +80,9 @@ class PowerUnitController extends Controller
      */
     public function destroy(PowerUnit $powerUnit)
     {
-        // if ($driver->photo) {
-        //     Storage::delete($driver->photo);
-        // }
 
-        // $driver->delete();
+        $powerUnit->delete();
 
-        // return redirect()->route("drivers.index");
+        return redirect()->route("power-units.index");
     }
 }
