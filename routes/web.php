@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DriverController;
+use App\Http\Controllers\Admin\PowerUnitController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\ProfileController;
 use App\Models\CarSpec;
@@ -32,6 +33,9 @@ Route::resource("teams", TeamController::class);
 // ->middleware(['auth', 'verified']);
 
 Route::resource("drivers", DriverController::class);
+// ->middleware(['auth', 'verified']);
+
+Route::resource("power-units", PowerUnitController::class);
 // ->middleware(['auth', 'verified']);
 
 

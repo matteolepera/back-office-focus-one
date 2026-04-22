@@ -84,7 +84,7 @@
             </div>
 
             <div class="col-md-6">
-                <a href="" class="text-decoration-none">
+                <a href="{{ route('power-units.index') }}" class="text-decoration-none">
                     <div class="card border rounded-3 shadow-sm h-100">
                         <div class="card-body px-4 py-3 d-flex align-items-center justify-content-between">
                             <div>
