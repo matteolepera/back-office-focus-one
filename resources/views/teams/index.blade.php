@@ -13,6 +13,7 @@
                     </small>
                 </p>
             </div>
+            <a href="{{ route('dashboard') }}" class="btn btn-outline-dark px-4">Dashboard</a>
             <a href="{{ route('teams.create') }}" class="btn btn-dark px-4">+ Aggiungi team</a>
         </div>
 

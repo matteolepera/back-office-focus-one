@@ -3,6 +3,10 @@
 use App\Http\Controllers\Admin\DriverController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\ProfileController;
+use App\Models\CarSpec;
+use App\Models\Driver;
+use App\Models\PowerUnit;
+use App\Models\Team;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -10,7 +14,12 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard', [
+        'teamsCount' => Team::count(),
+        'driversCount' => Driver::count(),
+        'carSpecsCount' => CarSpec::count(),
+        'powerUnitsCount' => PowerUnit::count(),
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
