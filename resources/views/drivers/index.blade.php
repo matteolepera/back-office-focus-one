@@ -5,116 +5,110 @@
 
         <div class="d-flex justify-content-between align-items-center mb-4">
             <div>
-                <h1 class="h3 fw-semibold mb-0">Piloti</h1>
-                <p class="text-muted mb-0 mt-1">
-                    <small>
-                        {{ $drivers->count() }}
-                        {{ $drivers->count() == 1 ? 'pilota registrato' : 'piloti registrati' }}
-                    </small>
+                <h1 class="index-header-title">Piloti</h1>
+                <p class="index-header-sub mb-0">
+                    {{ $drivers->count() }}
+                    {{ $drivers->count() == 1 ? 'pilota registrato' : 'piloti registrati' }}
                 </p>
             </div>
-            <a href="{{ route('dashboard') }}" class="btn btn-outline-dark px-4">Dashboard</a>
-            <a href="{{ route('drivers.create') }}" class="btn btn-dark px-4">
-                + Aggiungi pilota
+            <a href="{{ route('drivers.create') }}" class="btn btn-dark px-4 d-flex align-items-center gap-2">
+                <i class="bi bi-plus-lg"></i> Aggiungi pilota
             </a>
         </div>
 
         <div class="card border rounded-3 shadow-sm">
             <div class="table-responsive">
-                <table class="table table-hover align-middle mb-0">
+                <table class="table index-table mb-0">
                     <thead>
-                        <tr class="border-bottom">
-                            <th class="px-4 py-3 text-uppercase text-muted fw-semibold"
-                                style="font-size: 11px; letter-spacing: .06em; width: 60px;">#</th>
-                            <th class="px-4 py-3 text-uppercase text-muted fw-semibold"
-                                style="font-size: 11px; letter-spacing: .06em;">Pilota</th>
-                            <th class="px-4 py-3 text-uppercase text-muted fw-semibold"
-                                style="font-size: 11px; letter-spacing: .06em;">Team</th>
-                            <th class="px-4 py-3 text-uppercase text-muted fw-semibold"
-                                style="font-size: 11px; letter-spacing: .06em;">Nazionalità</th>
-                            <th class="px-4 py-3 text-uppercase text-muted fw-semibold"
-                                style="font-size: 11px; letter-spacing: .06em;">Stagione</th>
-                            <th class="px-4 py-3 text-uppercase text-muted fw-semibold"
-                                style="font-size: 11px; letter-spacing: .06em;">Vittorie</th>
-                            <th class="px-4 py-3 text-uppercase text-muted fw-semibold"
-                                style="font-size: 11px; letter-spacing: .06em;">Titoli</th>
-                            <th class="px-4 py-3 text-uppercase text-muted fw-semibold"
-                                style="font-size: 11px; letter-spacing: .06em;">Azioni</th>
+                        <tr>
+                            <th>#</th>
+                            <th>Pilota</th>
+                            <th>Team</th>
+                            <th>Nazionalità</th>
+                            <th>Stagione</th>
+                            <th>Vittorie</th>
+                            <th>Titoli</th>
+                            <th>Azioni</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($drivers as $driver)
-                            <tr class="border-bottom">
+                            <tr>
 
-                                <td class="px-4">
-                                    <span class="badge rounded-pill bg-dark">{{ $driver->driver_number }}</span>
-                                </td>
+                                <td><span class="number-badge">{{ $driver->driver_number }}</span></td>
 
-                                <td class="px-4 py-3">
+                                <td>
                                     <div class="d-flex align-items-center gap-3">
                                         <img src="{{ asset('storage/' . $driver->photo) }}"
-                                            alt="{{ $driver->first_name }} {{ $driver->last_name }}"
-                                            class="rounded-circle object-fit-cover flex-shrink-0"
-                                            style="width: 40px; height: 40px; object-position: top;">
+                                            alt="{{ $driver->first_name }} {{ $driver->last_name }}" class="driver-avatar">
                                         <div>
-                                            <div class="fw-semibold">{{ $driver->first_name }} {{ $driver->last_name }}</div>
-                                            <small
-                                                class="text-muted">{{ \Carbon\Carbon::parse($driver->date_of_birth)->format('d/m/Y') }}</small>
+                                            <div class="driver-name">{{ $driver->first_name }} {{ $driver->last_name }}</div>
+                                            <div class="driver-dob">
+                                                {{ \Carbon\Carbon::parse($driver->date_of_birth)->format('d/m/Y') }}
+                                            </div>
                                         </div>
                                     </div>
                                 </td>
 
-                                <td class="px-4">
-                                    <span class="badge bg-secondary bg-opacity-10 text-dark border fw-normal px-3 py-2"
-                                        style="font-size: 12px;">
-                                        {{ $driver->team->name }}
+                                <td><span class="team-badge">{{ $driver->team->name }}</span></td>
+
+                                <td class="text-muted">{{ $driver->nationality }}</td>
+
+                                <td class="text-muted">{{ $driver->season }}</td>
+
+                                <td>
+                                    <span class="d-flex align-items-center gap-1">
+                                        <i class="bi bi-flag-fill text-dark" style="font-size: 13px;"></i>
+                                        <span class="fw-semibold">{{ $driver->total_wins }}</span>
                                     </span>
                                 </td>
 
-                                <td class="px-4 text-muted">{{ $driver->nationality }}</td>
+                                <td>
+                                    <span class="d-flex align-items-center gap-1">
+                                        <i class="bi bi-trophy-fill text-dark" style="font-size: 13px;"></i>
+                                        <span class="fw-semibold">{{ $driver->total_world_championships }}</span>
+                                    </span>
+                                </td>
 
-                                <td class="px-4 text-muted">{{ $driver->season }}</td>
-
-                                <td class="px-4 fw-semibold">{{ $driver->total_wins }}</td>
-
-                                <td class="px-4 fw-semibold">{{ $driver->total_world_championships }}</td>
-
-                                <td class="px-4">
+                                <td>
                                     <div class="d-flex gap-2">
-                                        <a href="{{ route('drivers.show', $driver) }}"
-                                            class="btn btn-sm btn-outline-dark px-3">Dettaglio</a>
-                                        <a href="{{ route('drivers.edit', $driver) }}"
-                                            class="btn btn-sm btn-outline-secondary px-3">Modifica</a>
-                                        <button type="button" class="btn btn-sm btn-outline-danger px-3" data-bs-toggle="modal"
+                                        <a href="{{ route('drivers.show', $driver) }}" class="btn-action btn-action-view">
+                                            <i class="bi bi-eye"></i> Dettaglio
+                                        </a>
+                                        <a href="{{ route('drivers.edit', $driver) }}" class="btn-action btn-action-edit">
+                                            <i class="bi bi-pencil"></i> Modifica
+                                        </a>
+                                        <button type="button" class="btn-action btn-action-delete" data-bs-toggle="modal"
                                             data-bs-target="#modalDestroy{{ $driver->id }}">
-                                            Elimina
+                                            <i class="bi bi-trash"></i> Elimina
                                         </button>
+                                    </div>
 
-                                        <div class="modal fade" id="modalDestroy{{ $driver->id }}" tabindex="-1"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content border-0 shadow">
-                                                    <div class="modal-header border-0 pb-0">
-                                                        <h5 class="modal-title fw-semibold">Elimina pilota</h5>
-                                                        <button type="button" class="btn-close"
-                                                            data-bs-dismiss="modal"></button>
-                                                    </div>
-                                                    <div class="modal-body text-muted">
-                                                        Sei sicuro di voler eliminare <strong
-                                                            class="text-dark">{{ $driver->first_name }}
-                                                            {{ $driver->last_name }}</strong>?
-                                                        Questa azione è irreversibile.
-                                                    </div>
-                                                    <div class="modal-footer border-0 pt-0">
-                                                        <button type="button" class="btn btn-outline-secondary"
-                                                            data-bs-dismiss="modal">Annulla</button>
-                                                        <form action="{{ route('drivers.destroy', $driver) }}" method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger">Conferma
-                                                                eliminazione</button>
-                                                        </form>
-                                                    </div>
+                                    <div class="modal fade" id="modalDestroy{{ $driver->id }}" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content border-0 shadow">
+                                                <div class="modal-header border-0 pb-0">
+                                                    <h5 class="modal-title fw-semibold">Elimina pilota</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                </div>
+                                                <div class="modal-body text-muted">
+                                                    Sei sicuro di voler eliminare <strong
+                                                        class="text-dark">{{ $driver->first_name }}
+                                                        {{ $driver->last_name }}</strong>?
+                                                    Questa azione è irreversibile.
+                                                </div>
+                                                <div class="modal-footer border-0 pt-0">
+                                                    <button type="button" class="btn btn-outline-secondary"
+                                                        data-bs-dismiss="modal">
+                                                        <i class="bi bi-x me-1"></i> Annulla
+                                                    </button>
+                                                    <form action="{{ route('drivers.destroy', $driver) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger">
+                                                            <i class="bi bi-trash me-1"></i> Conferma eliminazione
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>

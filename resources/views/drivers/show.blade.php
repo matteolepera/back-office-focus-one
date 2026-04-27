@@ -5,14 +5,20 @@
 
         <div class="d-flex justify-content-between align-items-center mb-4">
             <div>
-                <h1 class="h3 fw-semibold mb-0">{{ $driver->first_name }} {{ $driver->last_name }}</h1>
-                <small class="text-muted fst-italic">"{{ $driver->driver_slogan }}"</small>
+                <h1 class="form-page-title mb-0">{{ $driver->first_name }} {{ $driver->last_name }}</h1>
+                <p class="form-page-sub mb-0 fst-italic">"{{ $driver->driver_slogan }}"</p>
             </div>
             <div class="d-flex gap-2">
-                <a href="{{ route('drivers.edit', $driver) }}" class="btn btn-outline-secondary px-4">Modifica</a>
-                <button type="button" class="btn btn-outline-danger px-4" data-bs-toggle="modal"
-                    data-bs-target="#modalDestroyDriver">Elimina</button>
-                <a href="{{ route('drivers.index') }}" class="btn btn-dark px-4">Torna indietro</a>
+                <a href="{{ route('drivers.edit', $driver) }}" class="btn-action btn-action-edit">
+                    <i class="bi bi-pencil"></i> Modifica
+                </a>
+                <button type="button" class="btn-action btn-action-delete" data-bs-toggle="modal"
+                    data-bs-target="#modalDestroyDriver">
+                    <i class="bi bi-trash"></i> Elimina
+                </button>
+                <a href="{{ route('drivers.index') }}" class="btn-action btn-action-view">
+                    <i class="bi bi-arrow-left"></i> Torna indietro
+                </a>
             </div>
         </div>
 
@@ -24,17 +30,20 @@
                         style="height: 320px; object-position: top;" alt="{{ $driver->first_name }}">
                     <div class="card-body px-4 py-3">
                         <div class="d-flex align-items-center justify-content-between">
-                            <span class="text-muted" style="font-size: 13px;">{{ $driver->team->name }}</span>
-                            <span class="badge bg-dark rounded-pill fs-6"># {{ $driver->driver_number }}</span>
+                            <span class="team-badge">{{ $driver->team->name }}</span>
+                            <span class="number-badge"># {{ $driver->driver_number }}</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-8">
-                <div class="card border rounded-3 shadow-sm mb-4">
-                    <div class="card-body px-4 py-3">
-                        <h5 class="fw-semibold mb-3">Informazioni</h5>
+            <div class="col-md-8 d-flex flex-column gap-4">
+
+                <div class="card border rounded-3 shadow-sm">
+                    <div class="card-body px-4 py-4">
+                        <h5 class="form-card-title">
+                            <i class="bi bi-info-circle me-2"></i>Informazioni
+                        </h5>
                         <table class="table table-borderless mb-0" style="font-size: 14px;">
                             <tr>
                                 <td class="text-muted ps-0" style="width: 40%;">Team</td>
@@ -58,8 +67,10 @@
                 </div>
 
                 <div class="card border rounded-3 shadow-sm">
-                    <div class="card-body px-4 py-3">
-                        <h5 class="fw-semibold mb-3">Statistiche</h5>
+                    <div class="card-body px-4 py-4">
+                        <h5 class="form-card-title">
+                            <i class="bi bi-bar-chart me-2"></i>Statistiche
+                        </h5>
                         <div class="row g-3 text-center">
                             <div class="col-3">
                                 <div class="border rounded-3 p-3">
@@ -88,12 +99,15 @@
                         </div>
                     </div>
                 </div>
+
             </div>
 
             <div class="col-12">
                 <div class="card border rounded-3 shadow-sm">
-                    <div class="card-body px-4 py-3">
-                        <h5 class="fw-semibold mb-3">Biografia</h5>
+                    <div class="card-body px-4 py-4">
+                        <h5 class="form-card-title">
+                            <i class="bi bi-journal-text me-2"></i>Biografia
+                        </h5>
                         <p class="text-muted mb-0" style="line-height: 1.8;">{{ $driver->biography }}</p>
                     </div>
                 </div>
@@ -115,11 +129,15 @@
                     Questa azione è irreversibile.
                 </div>
                 <div class="modal-footer border-0 pt-0">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annulla</button>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        <i class="bi bi-x me-1"></i> Annulla
+                    </button>
                     <form action="{{ route('drivers.destroy', $driver) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Conferma eliminazione</button>
+                        <button type="submit" class="btn btn-danger">
+                            <i class="bi bi-trash me-1"></i> Conferma eliminazione
+                        </button>
                     </form>
                 </div>
             </div>
