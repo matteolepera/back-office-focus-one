@@ -37,7 +37,8 @@
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="form-label text-muted" style="font-size: 13px;">Logo</label>
+                                    <label class="form-label text-muted" style="font-size: 13px;">Logo <span
+                                            class="text-danger">*</span></label>
                                     <div class="d-flex align-items-center gap-3">
                                         @if ($team->logo_image)
                                             <div class="rounded-circle bg-dark d-flex align-items-center justify-content-center flex-shrink-0"
@@ -62,18 +63,21 @@
                             <div class="row g-3">
 
                                 <div class="col-md-4">
-                                    <label class="form-label text-muted" style="font-size: 13px;">Base</label>
+                                    <label class="form-label text-muted" style="font-size: 13px;">Base <span
+                                            class="text-danger">*</span></label>
                                     <input type="text" name="base_city" class="form-control" value="{{ $team->base_city }}">
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="form-label text-muted" style="font-size: 13px;">Team Principal</label>
+                                    <label class="form-label text-muted" style="font-size: 13px;">Team Principal <span
+                                            class="text-danger">*</span></label>
                                     <input type="text" name="team_chief" class="form-control"
                                         value="{{ $team->team_chief }}">
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="form-label text-muted" style="font-size: 13px;">Technical Chief</label>
+                                    <label class="form-label text-muted" style="font-size: 13px;">Technical Chief <span
+                                            class="text-danger">*</span></label>
                                     <input type="text" name="technical_chief" class="form-control"
                                         value="{{ $team->technical_chief }}">
                                 </div>
@@ -86,7 +90,7 @@
 
                                 <div class="col-md-4">
                                     <label class="form-label text-muted" style="font-size: 13px;">Anno primo
-                                        ingresso</label>
+                                        ingresso <span class="text-danger">*</span></label>
                                     <input type="number" name="first_team_entry" class="form-control"
                                         value="{{ $team->first_team_entry }}">
                                 </div>

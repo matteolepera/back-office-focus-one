@@ -107,7 +107,7 @@ class CarSpecController extends Controller
      */
     public function destroy(CarSpec $carSpec)
     {
-        if ($carSpec->car_image) {
+        if (!$carSpec->car_image == "placeholder.jpg") {
             Storage::delete($carSpec->car_image);
         }
 

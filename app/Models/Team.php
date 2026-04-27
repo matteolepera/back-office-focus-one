@@ -10,4 +10,8 @@ class Team extends Model
     {
         return $this->hasMany(Driver::class);
     }
+    public function carSpecs()
+    {
+        return $this->hasOne(CarSpec::class);
+    }
 }

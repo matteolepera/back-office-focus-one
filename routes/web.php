@@ -30,17 +30,17 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource("teams", TeamController::class);
-// ->middleware(['auth', 'verified']);
+Route::resource("teams", TeamController::class)
+    ->middleware(['auth', 'verified']);
 
-Route::resource("drivers", DriverController::class);
-// ->middleware(['auth', 'verified']);
+Route::resource("drivers", DriverController::class)
+    ->middleware(['auth', 'verified']);
 
-Route::resource("power-units", PowerUnitController::class);
-// ->middleware(['auth', 'verified']);
+Route::resource("power-units", PowerUnitController::class)
+    ->middleware(['auth', 'verified']);
 
-Route::resource("car-specs", CarSpecController::class);
-// ->middleware(['auth', 'verified']);
+Route::resource("car-specs", CarSpecController::class)
+    ->middleware(['auth', 'verified']);
 
 
 require __DIR__ . '/auth.php';

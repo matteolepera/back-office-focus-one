@@ -38,7 +38,8 @@
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="form-label text-muted" style="font-size: 13px;">Foto</label>
+                                    <label class="form-label text-muted" style="font-size: 13px;">Foto <span
+                                            class="text-danger">*</span></label>
                                     <div class="d-flex align-items-center gap-3">
                                         @if ($driver->photo)
                                             <img src="{{ asset('storage/' . $driver->photo) }}" alt="{{ $driver->first_name }}"
@@ -50,25 +51,29 @@
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="form-label text-muted" style="font-size: 13px;">Nazionalità</label>
+                                    <label class="form-label text-muted" style="font-size: 13px;">Nazionalità <span
+                                            class="text-danger">*</span></label>
                                     <input type="text" name="nationality" class="form-control"
                                         value="{{ $driver->nationality }}">
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="form-label text-muted" style="font-size: 13px;">Data di nascita</label>
+                                    <label class="form-label text-muted" style="font-size: 13px;">Data di nascita <span
+                                            class="text-danger">*</span></label>
                                     <input type="date" name="date_of_birth" class="form-control"
                                         value="{{ $driver->date_of_birth }}">
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="form-label text-muted" style="font-size: 13px;">Slogan</label>
+                                    <label class="form-label text-muted" style="font-size: 13px;">Slogan <span
+                                            class="text-danger">*</span></label>
                                     <input type="text" name="driver_slogan" class="form-control"
                                         value="{{ $driver->driver_slogan }}">
                                 </div>
 
                                 <div class="col-md-12">
-                                    <label class="form-label text-muted" style="font-size: 13px;">Biografia</label>
+                                    <label class="form-label text-muted" style="font-size: 13px;">Biografia <span
+                                            class="text-danger">*</span></label>
                                     <textarea name="biography" class="form-control"
                                         rows="4">{{ $driver->biography }}</textarea>
                                 </div>
