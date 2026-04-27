@@ -39,13 +39,13 @@
                     </a>
                     <a href="{{ route('drivers.index') }}"
                         class="sidebar-link {{ request()->is('drivers*') ? 'active' : '' }}">
-                        <i class="bi bi-person-badge"></i>
+                        <i class="bi bi-person-fill"></i>
                         <span>Piloti</span>
                     </a>
                     <a href="{{ route('car-specs.index') }}"
                         class="sidebar-link {{ request()->is('car-specs*') ? 'active' : '' }}">
                         <i class="bi bi-car-front"></i>
-                        <span>Car Specs</span>
+                        <span>Vetture</span>
                     </a>
                     <a href="{{ route('power-units.index') }}"
                         class="sidebar-link {{ request()->is('power-units*') ? 'active' : '' }}">
