@@ -11,17 +11,21 @@
                         class="object-fit-contain" style="width: 34px; height: 34px;">
                 </div>
                 <div>
-                    <h1 class="h3 fw-semibold mb-0">{{ $team->name }}</h1>
-                    <small class="text-muted">{{ $team->full_name }}</small>
+                    <h1 class="form-page-title mb-0">{{ $team->name }}</h1>
+                    <p class="form-page-sub mb-0">{{ $team->full_name }}</p>
                 </div>
             </div>
             <div class="d-flex gap-2">
-                <a href="{{ route('teams.edit', $team) }}" class="btn btn-outline-secondary px-4">Modifica</a>
-                <button type="button" class="btn btn-outline-danger px-4" data-bs-toggle="modal"
+                <a href="{{ route('teams.edit', $team) }}" class="btn-action btn-action-edit">
+                    <i class="bi bi-pencil"></i> Modifica
+                </a>
+                <button type="button" class="btn-action btn-action-delete" data-bs-toggle="modal"
                     data-bs-target="#modalDestroyTeam">
-                    Elimina
+                    <i class="bi bi-trash"></i> Elimina
                 </button>
-                <a href="{{ route('teams.index') }}" class="btn btn-dark px-4">Torna indietro</a>
+                <a href="{{ route('teams.index') }}" class="btn-action btn-action-view">
+                    <i class="bi bi-arrow-left"></i> Torna indietro
+                </a>
             </div>
         </div>
 
@@ -29,12 +33,17 @@
 
             <div class="col-md-4">
                 <div class="card border rounded-3 shadow-sm h-100">
-                    <div class="card-body px-4 py-3">
-                        <h5 class="fw-semibold mb-3">Informazioni</h5>
+                    <div class="card-body px-4 py-4">
+                        <h5 class="form-card-title">
+                            <i class="bi bi-info-circle me-2"></i>Informazioni
+                        </h5>
                         <table class="table table-borderless mb-0" style="font-size: 14px;">
                             <tr>
                                 <td class="text-muted ps-0" style="width: 50%;">Base</td>
-                                <td class="fw-medium">{{ $team->base_city }}</td>
+                                <td class="fw-medium">
+                                    <i class="bi bi-geo-alt me-1 text-muted"></i>
+                                    {{ $team->base_city }}
+                                </td>
                             </tr>
                             <tr>
                                 <td class="text-muted ps-0">Team Principal</td>
@@ -54,7 +63,12 @@
                             </tr>
                             <tr>
                                 <td class="text-muted ps-0">Titoli mondiali</td>
-                                <td class="fw-semibold fs-5">{{ $team->total_world_championships }}</td>
+                                <td>
+                                    <span class="d-flex align-items-center gap-1">
+                                        <i class="bi bi-trophy-fill text-dark"></i>
+                                        <span class="fw-semibold">{{ $team->total_world_championships }}</span>
+                                    </span>
+                                </td>
                             </tr>
                         </table>
                     </div>
@@ -63,25 +77,28 @@
 
             <div class="col-md-8">
                 <div class="card border rounded-3 shadow-sm mb-4">
-                    <div class="card-body px-4 py-3">
-                        <h5 class="fw-semibold mb-3">Piloti</h5>
+                    <div class="card-body px-4 py-4">
+                        <h5 class="form-card-title">
+                            <i class="bi bi-person-fill me-2"></i>Piloti
+                        </h5>
                         @if($team->drivers->count())
                             <div class="row g-3">
                                 @foreach($team->drivers as $driver)
                                     <div class="col-md-6">
                                         <div class="d-flex align-items-center gap-3 p-3 border rounded-3">
                                             <img src="{{ asset('storage/' . $driver->photo) }}" alt="{{ $driver->first_name }}"
-                                                class="rounded-circle object-fit-cover flex-shrink-0"
-                                                style="width: 48px; height: 48px; object-position: top;">
+                                                class="driver-avatar flex-shrink-0">
                                             <div>
-                                                <div class="fw-semibold">{{ $driver->first_name }} {{ $driver->last_name }}</div>
-                                                <small class="text-muted">
-                                                    <span class="badge bg-dark rounded-pill"># {{ $driver->driver_number }}</span>
-                                                    {{ $driver->nationality }}
-                                                </small>
+                                                <div class="driver-name">{{ $driver->first_name }} {{ $driver->last_name }}</div>
+                                                <div class="d-flex align-items-center gap-2 mt-1">
+                                                    <span class="number-badge"># {{ $driver->driver_number }}</span>
+                                                    <span class="driver-dob">{{ $driver->nationality }}</span>
+                                                </div>
                                             </div>
                                             <a href="{{ route('drivers.show', $driver) }}"
-                                                class="btn btn-sm btn-outline-dark ms-auto">Dettaglio</a>
+                                                class="btn-action btn-action-view ms-auto">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
                                         </div>
                                     </div>
                                 @endforeach
@@ -93,8 +110,10 @@
                 </div>
 
                 <div class="card border rounded-3 shadow-sm">
-                    <div class="card-body px-4 py-3">
-                        <h5 class="fw-semibold mb-3">Car Specs</h5>
+                    <div class="card-body px-4 py-4">
+                        <h5 class="form-card-title">
+                            <i class="bi bi-car-front me-2"></i>Vettura
+                        </h5>
                         @if($team->carSpecs)
                             <table class="table table-borderless mb-0" style="font-size: 14px;">
                                 <tr>
@@ -107,13 +126,13 @@
                                 </tr>
                                 <tr>
                                     <td class="text-muted ps-0">Sospensioni</td>
-                                    <td class="fw-medium">{{ $team->carSpecs->front_suspension }} /
-                                        {{ $team->carSpecs->rear_suspension }}
+                                    <td class="fw-medium">
+                                        {{ $team->carSpecs->front_suspension }} / {{ $team->carSpecs->rear_suspension }}
                                     </td>
                                 </tr>
                             </table>
                         @else
-                            <p class="text-muted mb-0">Nessuna auto disponibile.</p>
+                            <p class="text-muted mb-0">Nessuna vettura disponibile.</p>
                         @endif
                     </div>
                 </div>
@@ -134,11 +153,15 @@
                     Questa azione è irreversibile.
                 </div>
                 <div class="modal-footer border-0 pt-0">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annulla</button>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        <i class="bi bi-x me-1"></i> Annulla
+                    </button>
                     <form action="{{ route('teams.destroy', $team) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Conferma eliminazione</button>
+                        <button type="submit" class="btn btn-danger">
+                            <i class="bi bi-trash me-1"></i> Conferma eliminazione
+                        </button>
                     </form>
                 </div>
             </div>
