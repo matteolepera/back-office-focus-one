@@ -91,7 +91,9 @@ class CarSpecController extends Controller
         $carSpec->rear_suspension = $data["rear_suspension"];
 
         if (array_key_exists("car_image", $data)) {
-            Storage::delete($carSpec->car_image);
+            if (!$carSpec->car_image == "placeholder.jpg") {
+                Storage::delete($carSpec->car_image);
+            }
             $img_url = Storage::putFile("car_image", $data["car_image"]);
             $carSpec->car_image = $img_url;
         }
